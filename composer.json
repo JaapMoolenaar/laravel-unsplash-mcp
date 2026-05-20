@@ -2,6 +2,7 @@
     "name": "jaapmoolenaar.nl/laravel-unsplash-mcp",
     "description": "Unsplash MCP tools for Laravel",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "laravel/mcp": ">=0.1"
