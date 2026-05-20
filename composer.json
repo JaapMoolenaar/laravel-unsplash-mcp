@@ -1,0 +1,47 @@
+{
+    "name": "jaapmoolenaar.nl/laravel-unsplash-mcp",
+    "description": "Unsplash MCP tools for Laravel",
+    "type": "library",
+    "require": {
+        "php": "^8.4",
+        "laravel/mcp": ">=0.1"
+    },
+    "suggest": {
+        "statamic/cms": "Required to use the statamic registrar with import-unsplash-photo"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.6",
+        "orchestra/testbench": "^11.0",
+        "laravel/framework": "^13.0",
+        "laravel/pint": "^1.29"
+    },
+    "autoload": {
+        "psr-4": {
+            "JaapMoolenaar\\UnsplashMcp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JaapMoolenaar\\UnsplashMcp\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/pint",
+        "lint:check": "vendor/bin/pint --test"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JaapMoolenaar\\UnsplashMcp\\UnsplashMcpServiceProvider"
+            ]
+        }
+    },
+    "version": "1.0.0",
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
