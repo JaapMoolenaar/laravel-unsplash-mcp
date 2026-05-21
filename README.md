@@ -120,6 +120,52 @@ unsplash_photo_cdn_url: https://images.unsplash.com/photo-abc123
 
 Requires `statamic/cms` to be installed.
 
+## Connecting an MCP client
+
+The service provider registers the MCP server automatically. How you connect an AI client depends on the transport.
+
+### Stdio: desktop AI tools (recommended)
+
+Desktop tools like Claude Code, Cursor, and VS Code connect to MCP servers over stdio. It should start the server with:
+
+```bash
+php artisan mcp:start unsplash
+```
+
+You can configure your client to run that command.
+
+For **Claude Code**, add this to `.mcp.json` in your project root:
+
+```json
+{
+    "mcpServers": {
+        "unsplash": {
+            "type": "stdio",
+            "command": "php",
+            "args": ["artisan", "mcp:start", "unsplash"]
+        }
+    }
+}
+```
+
+### HTTP: web-based clients
+
+If your client connects over HTTP, publish the AI routes file and register the server:
+
+```bash
+php artisan vendor:publish --tag=ai-routes
+```
+
+Then add to `routes/ai.php`:
+
+```php
+use Laravel\Mcp\Facades\Mcp;
+
+Mcp::web('/mcp/unsplash', \JaapMoolenaar\UnsplashMcp\UnsplashServer::class);
+```
+
+The server is then reachable at `POST /mcp/unsplash`.
+
 ## Usage with an AI assistant
 
 Once the MCP server is active, an AI assistant (e.g. Claude) connected to your Laravel app can:
