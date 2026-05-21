@@ -64,7 +64,9 @@ class SearchUnsplashTool extends Tool
                 'results' => $photos,
             ]);
         } catch (Throwable $exception) {
-            return Response::error($exception->getMessage());
+            report($exception);
+
+            return Response::error(sprintf('[%s] %s', class_basename($exception), $exception->getMessage()));
         }
     }
 
